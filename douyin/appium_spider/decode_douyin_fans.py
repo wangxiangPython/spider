@@ -1,7 +1,7 @@
 import json
 import time
 
-from handle_db import save_fans_info
+from appium_spider.handle_db import save_fans_info
 
 def response(flow):
     url_list = ['api3-normal-c-lq.amemv.com/aweme/v1/user/follower/list/',
