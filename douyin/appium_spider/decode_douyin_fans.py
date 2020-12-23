@@ -10,7 +10,7 @@ def response(flow):
     for url in url_list:
 
         if url in flow.request.url:
-            with open('user.txt','w',encoding='utf-8') as f:
+            with open('user.txt', 'w', encoding='utf-8') as f:
                 f.write(flow.response.text)
 
             for user in json.loads(flow.response.text)['followers']:
