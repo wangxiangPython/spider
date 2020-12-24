@@ -17,10 +17,10 @@ def get_response(url,headers):
 
     return res
 
-def get_video_data():
+def get_video_data(url):
     # url = 'https://www.bilibili.com/video/BV1Hz411q7YY'
     # url = 'https://www.bilibili.com/video/BV1Q64y1o77t'
-    url = 'https://www.bilibili.com/video/BV14i4y177H1'
+    # url = 'https://www.bilibili.com/video/BV14i4y177H1'
     headers = {
         # 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0',
@@ -49,7 +49,7 @@ def get_video_data():
     # return (title.strip(),video_url,audio_url)
     return ('test',video_url,audio_url)
 
-def save_video(video_data):
+def save_video(video_data,url):
     # video_data = get_video_data()
     headers_video = {
         # 'Host': 'cn-hbwh2-cmcc-bcache-04.bilivideo.com',
@@ -61,7 +61,7 @@ def save_video(video_data):
         'Accept': '*/*',
         'Sec-Fetch-Site': 'cross-site',
         'Sec-Fetch-Mode': 'cors',
-        'Referer': 'https://www.bilibili.com/video/BV1Hz411q7YY',
+        'Referer': url,
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept-Language': 'zh-CN,zh;q=0.9'
     }
@@ -73,7 +73,7 @@ def save_video(video_data):
         'Accept': '*/*',
         'Sec-Fetch-Site': 'cross-site',
         'Sec-Fetch-Mode': 'cors',
-        'Referer': 'https://www.bilibili.com/video/BV1Hz411q7YY',
+        'Referer': url,
         'Accept-Encoding': 'identity',
         'Accept-Language': 'zh-CN,zh;q=0.9',
         # 'Range': 'bytes=0-4639000'
@@ -97,8 +97,9 @@ def merge_data(video_name):
     subprocess.Popen(COMMAND,shell=True)
 
 def main():
-    vide_data = get_video_data()
-    save_video(vide_data)
+    url = 'https://www.bilibili.com/video/BV14i4y177H1'
+    vide_data = get_video_data(url)
+    save_video(vide_data,url)
     merge_data(vide_data[0])
 
 if __name__ == '__main__':
